@@ -12,7 +12,7 @@ routes.get('/pessoa', PessoaController.index); //Rota para listar
 
 routes.get('/pessoa/:idpessoa/endereco', EnderecoController.index); //Rota para listar
 routes.post('/pessoa/:idpessoa/endereco', EnderecoController.store); //Rota para criar
-
+routes.post('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.update); //Rota para editar
 
 
 module.exports = routes;    

@@ -2,7 +2,6 @@ const Pessoa = require('../models/Pessoa');
 
 module.exports = {
 
-
   //Metodo que lista pessoas
   async index(req, res){
     const pessoa = await Pessoa.findAll();

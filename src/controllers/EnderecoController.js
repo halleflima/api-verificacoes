@@ -36,7 +36,35 @@ module.exports = {
       ref,
       idpessoa,
     });
-
     return res.json(endereco);
+  },
+
+  async update(req, res) {
+
+    const { idpessoa } = req.params;
+    let  enderecoReturn;
+    const pessoa = await Pessoa.findByPk(idpessoa, {
+      include: { association: 'enderecos' }
+    });
+
+    if (!pessoa) {
+      return res.status(400).json({ error: 'Pessoa não encontrada' });
+    }
+
+    const endereco = await Endereco.update({
+      estado: req.body.estado,
+      cidade: req.body.cidade,
+      rua:  req.body.rua,
+      bairro: req.body.bairro,
+      numero: req.body.numero,
+      cep:  req.body.cep,
+      ref:  req.body.ref,
+    }, {where:{id: req.params.idendereco}});
+
+    if (!!endereco) {
+      return res.json(pessoa.enderecos);
+    }
+
+    return res.json(pessoa.enderecos);
   }
 };
