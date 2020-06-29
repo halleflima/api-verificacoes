@@ -2,6 +2,7 @@ const express = require('express');
 const PessoaController = require('./controllers/PessoaController');
 const EnderecoController = require('./controllers/EnderecoController');
 const ContatoController = require('./controllers/ContatoController');
+const OrdemController = require('./controllers/OrdemController');
 
 
 const routes = express.Router();
@@ -23,5 +24,8 @@ routes.get('/pessoa/:idpessoa/contato', ContatoController.index);
 routes.post('/pessoa/:idpessoa/contato', ContatoController.store); 
 routes.post('/pessoa/:idpessoa/contato/:idcontato', ContatoController.update); 
 routes.delete('/pessoa/:idpessoa/contato/:idcontato', ContatoController.delete); 
+
+
+routes.get('/ordem', OrdemController.index); 
 
 module.exports = routes;    

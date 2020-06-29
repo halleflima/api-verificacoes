@@ -20,6 +20,7 @@ class Endereco extends Model {
 
   static associate(models) {
     this.belongsTo(models.Pessoa,  {foreignKey:'idpessoa', as:'endereco' });
+    this.hasMany(models.Ordem,  {foreignKey:'idendereco', as:'ordemEnderecos' });
   }
 }
 

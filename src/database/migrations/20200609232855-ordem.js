@@ -16,6 +16,13 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      idendereco: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model:'endereco', key:'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       status: {
         type: Sequelize.STRING,
         allowNull: false,
