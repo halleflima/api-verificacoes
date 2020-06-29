@@ -42,7 +42,8 @@ module.exports = {
   async update(req, res) {
 
     const { idpessoa } = req.params;
-    let  enderecoReturn;
+    const { idendereco } = req.params;
+    
     const pessoa = await Pessoa.findByPk(idpessoa, {
       include: { association: 'enderecos' }
     });
@@ -50,21 +51,34 @@ module.exports = {
     if (!pessoa) {
       return res.status(400).json({ error: 'Pessoa não encontrada' });
     }
-
-    const endereco = await Endereco.update({
-      estado: req.body.estado,
-      cidade: req.body.cidade,
-      rua:  req.body.rua,
-      bairro: req.body.bairro,
-      numero: req.body.numero,
-      cep:  req.body.cep,
-      ref:  req.body.ref,
-    }, {where:{id: req.params.idendereco}});
-
+    
+    const endereco = await Endereco.findOne( {where: {id: idendereco } });
+ 
     if (!!endereco) {
-      return res.json(pessoa.enderecos);
+      const updateEndereco = await endereco.update(req.body);
+      return res.status(200).json({ post: updateEndereco });
     }
 
-    return res.json(pessoa.enderecos);
+  },
+
+  async delete(req, res) {
+    const { idpessoa } = req.params;
+    const { idendereco } = req.params;
+    
+    const pessoa = await Pessoa.findByPk(idpessoa, {
+      include: { association: 'enderecos' }
+    });
+
+    if (!pessoa) {
+      return res.status(400).json({ error: 'Pessoa não encontrada' });
+    }
+    
+    const endereco = await Endereco.findOne( {where: {id: idendereco } });
+ 
+    if (!!endereco) {
+      const updateEndereco = await endereco.destroy();
+      return res.status(200).json({ post: updateEndereco });
+    }
   }
+
 };
