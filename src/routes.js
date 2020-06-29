@@ -6,15 +6,22 @@ const ContatoController = require('./controllers/ContatoController');
 
 const routes = express.Router();
 
+//Rotas de Pessoa
+routes.post('/pessoa', PessoaController.store); 
+routes.get('/pessoa', PessoaController.index); 
 
-routes.post('/pessoa', PessoaController.store); //Rota criar pessoas
-routes.get('/pessoa', PessoaController.index); //Rota para listar
 
-routes.get('/pessoa/:idpessoa/endereco', EnderecoController.index); //Rota para listar
-routes.post('/pessoa/:idpessoa/endereco', EnderecoController.store); //Rota para criar
-routes.post('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.update); //Rota para editar
-routes.delete('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.delete); //Rota para Deletar
+//Rotas de Endereço
+routes.get('/pessoa/:idpessoa/endereco', EnderecoController.index); 
+routes.post('/pessoa/:idpessoa/endereco', EnderecoController.store); 
+routes.post('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.update); 
+routes.delete('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.delete); 
 
-routes.get('/pessoa/:idpessoa/contato', ContatoController.index); //Rota para listar
+
+//Rotas de Contato
+routes.get('/pessoa/:idpessoa/contato', ContatoController.index); 
+routes.post('/pessoa/:idpessoa/contato', ContatoController.store); 
+routes.post('/pessoa/:idpessoa/contato/:idcontato', ContatoController.update); 
+routes.delete('/pessoa/:idpessoa/contato/:idcontato', ContatoController.delete); 
 
 module.exports = routes;    
