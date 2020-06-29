@@ -15,6 +15,7 @@ class Pessoa extends Model {
   
   static associate(models) {
     this.hasMany(models.Endereco,  {foreignKey:'idpessoa', as:'enderecos' });
+    this.hasMany(models.Contato,  {foreignKey:'idpessoa', as:'contatos' });
   }
 }
 

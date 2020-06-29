@@ -12,7 +12,7 @@ class Contato extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(model.Pessoa,  {foreignKey:'idpessoa', as:'contatos' });
+    this.belongsTo(models.Pessoa,  {foreignKey:'idpessoa', as:'contato' });
   }
 }
 

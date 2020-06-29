@@ -1,6 +1,7 @@
 const express = require('express');
 const PessoaController = require('./controllers/PessoaController');
 const EnderecoController = require('./controllers/EnderecoController');
+const ContatoController = require('./controllers/ContatoController');
 
 
 const routes = express.Router();
@@ -14,5 +15,6 @@ routes.post('/pessoa/:idpessoa/endereco', EnderecoController.store); //Rota para
 routes.post('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.update); //Rota para editar
 routes.delete('/pessoa/:idpessoa/endereco/:idendereco', EnderecoController.delete); //Rota para Deletar
 
+routes.get('/pessoa/:idpessoa/contato', ContatoController.index); //Rota para listar
 
 module.exports = routes;    
